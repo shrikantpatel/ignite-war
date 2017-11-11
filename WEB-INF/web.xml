@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>DynamicWebProject</display-name>
+  
+  <listener>
+   <listener-class>org.apache.ignite.startup.servlet.ServletContextListenerStartup</listener-class>
+</listener>
+
+<filter>
+   <filter-name>IgniteWebSessionsFilter</filter-name>
+   <filter-class>org.apache.ignite.cache.websession.WebSessionFilter</filter-class>
+</filter>
+
+<!-- You can also specify a custom URL pattern. -->
+<filter-mapping>
+   <filter-name>IgniteWebSessionsFilter</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<!-- Specify Ignite configuration (relative to META-INF folder or Ignite_HOME). -->
+<context-param>
+   <param-name>IgniteConfigurationFilePath</param-name>
+   <param-value>default-config.xml </param-value>
+</context-param>
+
+<!-- Specify the name of Ignite cache for web sessions. -->
+<context-param>
+   <param-name>IgniteWebSessionsCacheName</param-name>
+   <param-value>session-cache</param-value>
+</context-param>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
